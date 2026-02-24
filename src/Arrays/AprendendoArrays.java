@@ -1,3 +1,5 @@
+package Arrays;
+
 import java.util.Scanner;
 public class AprendendoArrays {
     public static int Somar(int array[]){

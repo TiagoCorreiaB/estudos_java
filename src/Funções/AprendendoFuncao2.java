@@ -1,3 +1,5 @@
+package Funções;
+
 import java.util.Scanner;
 public class AprendendoFuncao2 {
     public static void MostrarValores(String nome,int idade){

@@ -1,3 +1,4 @@
+package Objetos;
 public class ObjetoAluno {
     //Bloco de atributos
     private String nome;

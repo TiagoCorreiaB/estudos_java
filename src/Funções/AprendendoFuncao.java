@@ -1,3 +1,5 @@
+package Funções;
+
 import java.util.Scanner;
 public class AprendendoFuncao {
     public static String ParOuImpar(int valor){

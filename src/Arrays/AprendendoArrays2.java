@@ -1,3 +1,5 @@
+package Arrays;
+
 import java.util.Scanner;
 public class AprendendoArrays2 {
     public static void main(String[] args){
