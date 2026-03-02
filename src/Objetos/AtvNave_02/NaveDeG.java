@@ -7,18 +7,23 @@ class NaveDeG extends NaveM {
     }
 
     @Override
-    public int receberDano(int dano) {
-        return super.receberDano(dano / 2);
-    }
-    // A lógica do super.receberDano já trata a vida,
-    // mas você precisa passar o dano reduzido para ele.
-
-    @Override
     public void viajar(int viagem) {
         super.viajar(viagem + 10);
     }
 
     public int atirar() {
         return 30;
+    }
+
+    public void usarEscudo(){
+        int dano;
+        dano = (25 * 60) / 100;
+        receberDano(dano);
+    }
+
+    @Override
+    public void status(){
+        System.out.println("O status da nave de guerra é: ");
+        super.status();
     }
 }

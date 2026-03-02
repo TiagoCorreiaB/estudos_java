@@ -5,6 +5,7 @@ public class NaveM {
     protected int distancia;
     protected int vidaMaxima;
 
+
     protected NaveM(int vida, int distancia){
         this.vida = vida;
         this.vidaMaxima = vida;
@@ -14,6 +15,8 @@ public class NaveM {
     public void viajar(int viagem){
         this.distancia += viagem;
     }
+
+    public int getdistancia(){ return this.distancia; }
 
     public int receberDano(int dano){
         this.vida -= dano;
@@ -32,8 +35,8 @@ public class NaveM {
     }
 
     public void status(){
-        System.out.println("Distancia percorrida: " + this.distancia);
         System.out.println("Vida da Nave: " + this.vida);
     }
+
 }
 

@@ -6,14 +6,14 @@ class NaveIni extends NaveM {
     }
 
     @Override
-    public int receberDano(int dano) {
-        return super.receberDano(dano / 2);
-    }
-
-    @Override
     public void viajar(int viagem) {
         super.viajar(viagem + 10);
     }
 
+    @Override
+    public void status(){
+        System.out.println("O status da nave inimiga é: ");
+        super.status();
+    }
 
 }
