@@ -6,8 +6,7 @@ public class AtividadeNave_02 {
 
     public static void main(String[] args){
         Scanner scan = new Scanner(System.in);
-        
-        //Começamos sem polimorfismo
+
         NaveM naveMae = new NaveM(100, 0);
         NaveDeG naveBatalha = new NaveDeG(60, 0);
         NaveIni naveInimiga = new NaveIni(60, 0);
@@ -34,7 +33,6 @@ public class AtividadeNave_02 {
                     System.out.print("Resposta: ");
                     escolha = scan.nextInt();
                     System.out.println();
-                    int escolhaNave = 0;
 
                     switch (escolha) {
                         case 1:
@@ -55,19 +53,8 @@ public class AtividadeNave_02 {
                             break;
 
                         case 3:
-                            System.out.print("Deseja reparar: [1] Nave Mãe, [2] Nave de Guerra: ");
-                            escolhaNave = scan.nextInt();
-                            if (escolhaNave == 1) {
-                                naveMae.reparar(10);
-                                System.out.println("Reparou 10 de vida da nave de guerra");
-                            } else {
-                                if (destruir == 0) {
-                                    naveBatalha.reparar(20);
-                                    System.out.println("Reparou 20 de vida da nave de batalha");
-                                } else {
-                                    System.out.println("A nave de batalha foi destruida e não pode ser reparada");
-                                }
-                            }
+                            naveBatalha.reparar(20);
+                            System.out.println("Reparou 20 de vida da nave de batalha");
                             break;
 
                         case 4:

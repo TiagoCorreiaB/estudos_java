@@ -1,4 +1,5 @@
-package Objetos;
+package Objetos.AtvAlunos;
+
 import java.util.Scanner;
 import java.util.ArrayList;
 public class AprendendoObjetos {
