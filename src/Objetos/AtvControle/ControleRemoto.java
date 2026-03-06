@@ -102,6 +102,7 @@ public class ControleRemoto implements Controlador {
     }
 
     // Getters e Setters (metodos especiais)
+    // Metodos privados pra mostrar como pode ser rigida a proteção
     private int getVolume() {
         return volume;
     }
