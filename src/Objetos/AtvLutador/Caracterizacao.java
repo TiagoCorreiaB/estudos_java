@@ -1,6 +1,6 @@
 package Objetos.AtvLutador;
 
-public interface caracterizacao {
+public interface Caracterizacao {
     public abstract void apresentar();
     public abstract void status();
     public abstract void ganharLuta();

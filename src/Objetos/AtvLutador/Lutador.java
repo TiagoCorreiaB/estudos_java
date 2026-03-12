@@ -1,6 +1,6 @@
 package Objetos.AtvLutador;
 
-public class Lutador implements caracterizacao {
+public class Lutador implements Caracterizacao {
 
     //Atributos
     private String nome;
@@ -14,10 +14,10 @@ public class Lutador implements caracterizacao {
     private int empates;
 
     //Construtor(metodo especial)
-    public Lutador(int empates, int derrotas, int vitorias, float peso, float altura, int idade, String nacionalidade, String nome) {
-        this.empates = empates;
-        this.derrotas = derrotas;
-        this.vitorias = vitorias;
+    public Lutador(float peso, float altura, int idade, String nacionalidade, String nome) {
+        this.empates = 0;
+        this.derrotas = 0;
+        this.vitorias = 0;
         this.setPeso(peso);
         this.altura = altura;
         this.idade = idade;
@@ -72,16 +72,16 @@ public class Lutador implements caracterizacao {
     }
 
     private void setCategoria() {
-        if (peso < 52.2){
+        if (this.peso < 52.2){
             categoria = "Invalido";
         }
-        else if(peso <= 70.3){
+        else if(this.peso <= 70.3){
             categoria = "Leve";
         }
-        else if(peso <= 83.9){
+        else if(this.peso <= 83.9){
             categoria = "Medio";
         }
-        else if (peso <= 120.2){
+        else if (this.peso <= 120.2){
             categoria = "Pesado";
         }
         else{
@@ -93,7 +93,7 @@ public class Lutador implements caracterizacao {
         return vitorias;
     }
 
-    public void setVitorias(int vitorias) {
+    private void setVitorias(int vitorias) {
         this.vitorias = vitorias;
     }
 
@@ -101,7 +101,7 @@ public class Lutador implements caracterizacao {
         return derrotas;
     }
 
-    public void setDerrotas(int derrotas) {
+    private void setDerrotas(int derrotas) {
         this.derrotas = derrotas;
     }
 
@@ -109,7 +109,7 @@ public class Lutador implements caracterizacao {
         return empates;
     }
 
-    public void setEmpates(int empates) {
+    private void setEmpates(int empates) {
         this.empates = empates;
     }
 
@@ -117,7 +117,7 @@ public class Lutador implements caracterizacao {
     @Override
     public void apresentar() {
         System.out.println("---------------------------------------------------------");
-        System.out.println("APRESENTANDO NESTA NOITE, O LUTADOR " + getNome() + " PESANDO INCRIVEIS" + getPeso() + "KG");
+        System.out.println("APRESENTANDO, O LUTADOR " + getNome() + " PESANDO INCRIVEIS " + getPeso() + "KG");
         System.out.println("ELE TEM UM TOTAL DE " + getVitorias() + " VITORIAS " + getDerrotas() + " DERROTAS E " + getEmpates() + " EMPATES");
         System.out.println("ELE VEIO PRA MOSTRAR O QUE SABE DE SUA TERRA " + getNacionalidade() + " NA CATEGORIA " + getCategoria() + " NO AUGE DOS SEUS " + getIdade() + " ANOS");
     }
