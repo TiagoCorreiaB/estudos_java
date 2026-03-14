@@ -1,4 +1,4 @@
-package Objetos.AtvEscola;
+package Objetos.AtvEscola_01;
 
 public class Aluno extends Pessoa {
     //Atributos

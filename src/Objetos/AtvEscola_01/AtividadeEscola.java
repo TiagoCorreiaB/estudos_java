@@ -1,4 +1,4 @@
-package Objetos.AtvEscola;
+package Objetos.AtvEscola_01;
 
 public class AtividadeEscola {
     public static void main(String[] args){
@@ -17,7 +17,7 @@ public class AtividadeEscola {
 
         p1.setSexo("M");
         p1.setIdade(17);
-        
+
 
 
         System.out.println(p1.toString());

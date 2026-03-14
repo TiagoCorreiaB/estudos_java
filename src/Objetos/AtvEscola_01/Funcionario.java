@@ -1,4 +1,4 @@
-package Objetos.AtvEscola;
+package Objetos.AtvEscola_01;
 
 public class Funcionario extends Pessoa {
     //Atributos

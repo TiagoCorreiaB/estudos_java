@@ -1,4 +1,4 @@
-package Objetos.AtvEscola;
+package Objetos.AtvEscola_01;
 
 public class Professor extends Pessoa { // Vou extender de pessoa pelo exercicio, mas todo professor também é funcionario.
     //Atributos
