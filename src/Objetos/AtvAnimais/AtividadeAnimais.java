@@ -49,5 +49,14 @@ public class AtividadeAnimais {
         k.emitirSom();
 
         //Isso é polimorfismo! tem o mesmo nome mas age de maneiras diferentes (polimorfismo de sobreposição pois tem a mesma assinatura)
+        //Polimorfismo de sobreposição usa @Override
+
+        Cachorro pluto = new Cachorro();
+
+        System.out.println();
+        pluto.reagir(2, 12.5f);
+        pluto.reagir(true);
+
+        //Isso é sobrecarga!! mesmo metodo, porém fazendo várias coisas diferentes
     }
 }
