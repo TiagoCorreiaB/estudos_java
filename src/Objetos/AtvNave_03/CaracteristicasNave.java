@@ -2,6 +2,6 @@ package Objetos.AtvNave_03;
 
 public interface CaracteristicasNave {
     public void viajar();
-    public void fugir();
-    public void receberDano();
+    public boolean fugir();
+    public void receberDano(int dano);
 }

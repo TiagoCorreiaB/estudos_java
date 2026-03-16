@@ -2,11 +2,32 @@ package Objetos.AtvNave_03;
 
 public abstract class Nave implements CaracteristicasNave {
     //Atributos
-    private int vida;
-    private int vidaMaxima;
-    private int distancia;
+    protected int vida;
+    protected int vidaMaxima;
+    protected int distancia;
+    protected boolean fulga;
+
+    //Construtor
+
+    public Nave(int vidaMaxima) {
+        this.fulga = false;
+        this.distancia = 0;
+        this.vidaMaxima = vidaMaxima;
+        this.vida = 0;
+    }
+
 
     //Metodos especiais (getters e setters)
+
+
+    public boolean isFulga() {
+        return fulga;
+    }
+
+    public void setFulga(boolean fulga) {
+        this.fulga = fulga;
+    }
+
     public int getVida() {
         return vida;
     }
@@ -28,14 +49,14 @@ public abstract class Nave implements CaracteristicasNave {
     }
 
     public void setDistancia(int distancia) {
-        this.distancia = distancia;
+        this.distancia += distancia;
     }
 
     //Metodos Comuns
     public abstract void viajar();
 
-    public abstract void fugir();
+    public abstract boolean fugir();
 
-    public abstract void receberDano();
+    public abstract void receberDano(int dano);
 }
 

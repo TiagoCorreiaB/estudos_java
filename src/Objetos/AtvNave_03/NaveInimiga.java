@@ -1,19 +1,9 @@
 package Objetos.AtvNave_03;
 
-class NaveMae extends Nave {
 
-    public NaveMae(int vidaMaxima) {
+public class NaveInimiga extends NaveDeGuerra {
+    public NaveInimiga(int vidaMaxima) {
         super(vidaMaxima);
-    }
-
-    @Override
-    public final void viajar() {
-        this.setDistancia(this.distancia);
-    }
-
-    @Override
-    public final boolean fugir(){
-        return isFulga();
     }
 
     @Override
@@ -22,4 +12,5 @@ class NaveMae extends Nave {
         if (novaVida < 0){novaVida = 0;}
         this.setVida(novaVida);
     }
+
 }
