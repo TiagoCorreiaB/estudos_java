@@ -1,6 +1,6 @@
 package Objetos.AtvNave_03;
 
-class NaveDeGuerra extends NaveMae {
+public class NaveDeGuerra extends NaveMae {
 
     private int escudo = 50;
     private int dano;
@@ -10,11 +10,11 @@ class NaveDeGuerra extends NaveMae {
         this.dano = dano;
     }
 
-    private int getEscudo() {
+    public int getEscudo() {
         return escudo;
     }
 
-    private void setEscudo(int escudo) {
+    public void setEscudo(int escudo) {
         this.escudo = escudo;
     }
 
@@ -48,11 +48,11 @@ class NaveDeGuerra extends NaveMae {
     }
 
     public void concertarNave(){
-        if (this.getVida() > this.vidaMaxima){
-             setVida(this.vidaMaxima);
-        }
-        if (this.getVida() > 0){
+        if (this.getVida() > 0 && this.getVida() < this.vidaMaxima) {
             setVida(getVida() + 10);
+            if (this.getVida() > this.vidaMaxima) {
+                setVida(this.vidaMaxima);
+            }
         }
     }
 

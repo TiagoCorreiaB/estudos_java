@@ -2,7 +2,7 @@ package Objetos.AtvNave_03;
 
 import java.util.Random;
 
-class NaveVarredura extends NaveMae {
+public class NaveVarredura extends NaveMae {
 
     public NaveVarredura(int vidaMaxima) {
         super(vidaMaxima);
@@ -10,7 +10,7 @@ class NaveVarredura extends NaveMae {
 
     @Override
     public void receberDano(int dano) {
-        //Naves de patrulha tem mais vida, mas não podem atacar ninguem
+        //Não recebe dano
     }
 
     public int fazerBusca(){

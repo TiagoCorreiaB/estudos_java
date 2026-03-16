@@ -8,18 +8,15 @@ public abstract class Nave implements CaracteristicasNave {
     protected boolean fulga;
 
     //Construtor
-
     public Nave(int vidaMaxima) {
         this.fulga = false;
         this.distancia = 0;
         this.vidaMaxima = vidaMaxima;
-        this.vida = 0;
+        this.vida = vidaMaxima;
     }
 
 
     //Metodos especiais (getters e setters)
-
-
     public boolean isFulga() {
         return fulga;
     }

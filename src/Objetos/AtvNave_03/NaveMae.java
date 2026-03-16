@@ -1,6 +1,6 @@
 package Objetos.AtvNave_03;
 
-class NaveMae extends Nave {
+public class NaveMae extends Nave {
 
     public NaveMae(int vidaMaxima) {
         super(vidaMaxima);
