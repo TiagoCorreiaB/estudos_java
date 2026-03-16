@@ -43,8 +43,17 @@ class NaveDeGuerra extends NaveMae {
     }
 
     public void uparEquipamento(int blindagem, int armamento){
-        this.setVida(this.getVida() + blindagem);
+        this.setVida(this.vidaMaxima + blindagem);
         this.setDano(this.getDano() + armamento);
+    }
+
+    public void concertarNave(){
+        if (this.getVida() > this.vidaMaxima){
+             setVida(this.vidaMaxima);
+        }
+        if (this.getVida() > 0){
+            setVida(getVida() + 10);
+        }
     }
 
 }

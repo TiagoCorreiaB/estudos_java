@@ -2,8 +2,8 @@ package Objetos.AtvNave_03;
 
 
 public class NaveInimiga extends NaveDeGuerra {
-    public NaveInimiga(int vidaMaxima) {
-        super(vidaMaxima);
+    public NaveInimiga(int vidaMaxima, int dano) {
+        super(vidaMaxima, dano);
     }
 
     @Override
