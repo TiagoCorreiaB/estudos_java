@@ -1,26 +1,33 @@
 package Objetos.AtvNave_03;
-
+import java.util.Random;
 import java.util.Scanner;
 
 public class AtividadeNave_03 {
 
     public static void main(String[] args) {
 
+        Random random = new Random();
         Scanner scan = new Scanner(System.in);
 
         NaveMae naveMae = new NaveMae(100);
         NaveDeGuerra naveBatalha = new NaveDeGuerra(60, 25);
         NaveVarredura naveBusca = new NaveVarredura(40);
+        int defVidaInimigo = 60;
+        int defDanoInimigo = 18;
 
         int escolha;
         int viagem;
         int rodada = 0;
         //Fazer breve descrição de jogo
-        System.out.println("Bem vindo ao meu Jogo de batalha de naves!");
-        System.out.println("Algumas regras antes e continuar: ");
-        System.out.println(" -Só é permitido andar entre 1km a 20km por rodada");
-        System.out.println(" -As naves de patrulha só procurarão itens de 5 em 5 rodadas");
-        System.out.println(" -O dano e a vida dos inimigos estaá aumentando a cada rodada");
+        System.out.println(" ________________________________________________________________ ");
+        System.out.println("|          Bem vindo ao meu Jogo de batalha de naves!            |");
+        System.out.println(" ---------------------------------------------------------------- ");
+        System.out.println("| Algumas regras antes e continuar:                              |");
+        System.out.println("|  -Só é permitido andar entre 1km a 20km por rodada             |");
+        System.out.println("|  -As naves de patrulha só procurarão itens de 5 em 5 rodadas   |");
+        System.out.println("|  -O dano e a vida dos inimigos estará aumentando a cada rodada |");
+        System.out.println("|  -Antes de perder a vida maxima, seu escudo receberá o dano    |");
+        System.out.println(" ---------------------------------------------------------------- ");
         System.out.print("Deseja iniciar a exploração? (1 = sim | 0 = não): ");
         escolha = scan.nextInt();
 
@@ -39,10 +46,15 @@ public class AtividadeNave_03 {
 
             if (naveMae.getDistancia() > 0 && (naveMae.getDistancia() % 5 == 0 || naveMae.getDistancia() % 7 == 0 || naveMae.getDistancia() % 10 == 0)) {
 
-                System.out.println("\n⚠ Você encontrou uma nave inimiga em " + naveMae.getDistancia() + " km!");
+                System.out.println("\n⚠ Você encontrou uma nave inimiga em " + naveMae.getDistancia() + " km! ⚠");
 
                 // Instancia o inimigo aqui para ele vir com vida cheia a cada novo encontro
-                NaveInimiga naveInimiga = new NaveInimiga(60, 18);
+                NaveInimiga naveInimiga = new NaveInimiga(defVidaInimigo, defDanoInimigo);
+                int vidaDinamica = random.nextInt(10) + 3;
+                int danoDinamico = random.nextInt(10) + 3;
+                //Acrescenta mais vida e dano a cada round novo
+                defVidaInimigo += vidaDinamica;
+                defDanoInimigo += danoDinamico;
                 boolean batalha = true;
 
                 while (batalha) {
@@ -95,12 +107,13 @@ public class AtividadeNave_03 {
                             System.out.println("--- STATUS DA NAVE DE BATALHA ---");
                             System.out.println("Vida: " + naveBatalha.getVida() + "/" + naveBatalha.getVidaMaxima());
                             System.out.println("Escudo: " + naveBatalha.getEscudo());
-                            System.out.println("Poder de Dano: " + naveBatalha.darDano());
+                            System.out.println("Poder de Dano: " + naveBatalha.getDano());
                             break;
 
                         case 5:
                             System.out.println("--- STATUS DO INIMIGO ---");
-                            System.out.println("Vida: " + naveInimiga.getVida());
+                            System.out.println("Vida: " + naveInimiga.getVida() + "/" + naveInimiga.getVidaMaxima());
+                            System.out.println("Poder de Dano: " + naveInimiga.getDano());
                             break;
 
                         case 6:
