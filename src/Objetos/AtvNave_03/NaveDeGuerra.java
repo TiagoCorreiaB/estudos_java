@@ -4,6 +4,10 @@ public class NaveDeGuerra extends NaveMae {
 
     private int escudo = 50;
     private int dano;
+    private boolean canhaoDePlasma = false;
+    private boolean rouboDeSucatas = false;
+    private boolean interferenciaDeSensores = false;
+
 
     public NaveDeGuerra(int vidaMaxima, int dano) {
         super(vidaMaxima);
@@ -36,6 +40,33 @@ public class NaveDeGuerra extends NaveMae {
             if (novaVida < 0){novaVida = 0;}
             this.setVida(novaVida);
         }
+    }
+
+    public final int usarHabilidade(int escolha, int vidaInimigo){
+        switch (escolha){
+            case 1: return 20;
+            break;
+            case 2: break;
+            case 3: return 23;
+            break;
+        }
+    }
+
+    public final void desbloquearHabilidade(int rodada){
+        if (rodada == 10){
+            this.canhaoDePlasma = true;
+        }
+        if (rodada == 20) {
+            this.rouboDeSucatas = true;
+        }
+        if (rodada == 30) {
+            this.interferenciaDeSensores = true;
+        }
+
+    }
+
+    public final void recarrecarEscudo(){
+        this.escudo = 50;
     }
 
     public int darDano(){

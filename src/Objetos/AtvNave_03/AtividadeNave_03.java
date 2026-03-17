@@ -27,11 +27,11 @@ public class AtividadeNave_03 {
         System.out.println("|  -As naves de patrulha só procurarão itens de 5 em 5 rodadas   |");
         System.out.println("|  -O dano e a vida dos inimigos estará aumentando a cada rodada |");
         System.out.println("|  -Antes de perder a vida maxima, seu escudo receberá o dano    |");
+        System.out.println("|  -A cada 7 rodadas o seu escudo será recarregado               |");
         System.out.println(" ---------------------------------------------------------------- ");
         System.out.print("Deseja iniciar a exploração? (1 = sim | 0 = não): ");
         escolha = scan.nextInt();
 
-        //fazer sistema de aumentar vida dos inimigos a cada rodada (aumentando exponencialmente ou dinamicamente os status!!!
         //Fazer sistema de habilidades especiais depois de uma quantiade de rodadas jogada!!!!!!!
 
         while (escolha == 1) {
@@ -101,6 +101,16 @@ public class AtividadeNave_03 {
                             break;
 
                         case 3:
+                            //aqui mostra as habilidades para escolha
+                            if (rodada > 10){
+                                System.out.println("Sem habilidades especiais para usar ainda");
+                            }
+                            else{
+                                System.out.println("Escolha a Habilidade que vai usar: ");
+                                int escolhaHabilidade = scan.nextInt();
+                                naveBatalha.usarHabilidade(escolhaHabilidade, defVidaInimigo);
+                            }
+
                             break;
 
                         case 4:
@@ -134,6 +144,10 @@ public class AtividadeNave_03 {
                     naveBatalha.uparEquipamento(loot, loot);
                     System.out.println("Equipamentos e Blindagem melhorados!");
                 }
+                if (rodada % 7 == 0){
+                    naveBatalha.recarrecarEscudo();
+                }
+                naveBatalha.desbloquearHabilidade(rodada);
 
             } else {
                 System.out.println("Distância atual: " + naveMae.getDistancia() + " km. Nada encontrado no espaço...");
