@@ -18,11 +18,11 @@ public class NaveDeGuerra extends NaveMae {
         this.escudo = escudo;
     }
 
-    private int getDano() {
+    public int getDano() {
         return dano;
     }
 
-    private void setDano(int dano) {
+    public void setDano(int dano) {
         this.dano = dano;
     }
 

@@ -14,20 +14,28 @@ public class AtividadeNave_03 {
 
         int escolha;
         int viagem;
-
+        int rodada = 0;
+        //Fazer breve descrição de jogo
+        System.out.println("Bem vindo ao meu Jogo de batalha de naves!");
+        System.out.println("Algumas regras antes e continuar: ");
+        System.out.println(" -Só é permitido andar entre 1km a 20km por rodada");
+        System.out.println(" -As naves de patrulha só procurarão itens de 5 em 5 rodadas");
+        System.out.println(" -O dano e a vida dos inimigos estaá aumentando a cada rodada");
         System.out.print("Deseja iniciar a exploração? (1 = sim | 0 = não): ");
         escolha = scan.nextInt();
+
+        //fazer sistema de aumentar vida dos inimigos a cada rodada (aumentando exponencialmente ou dinamicamente os status!!!
+        //Fazer sistema de habilidades especiais depois de uma quantiade de rodadas jogada!!!!!!!
 
         while (escolha == 1) {
 
             System.out.print("Digite quantos km deseja viajar: ");
             viagem = scan.nextInt();
-
-            for (int i = 0; i < viagem; i++) {
-                naveMae.viajar();
-                naveBatalha.viajar();
-                naveBusca.viajar();
+            while (viagem > 20 || viagem <= 0){
+                System.out.print("Apenas pode viajar para distancias maiores que 0 e menores que 20: ");
+                viagem = scan.nextInt();
             }
+            naveMae.viajar(viagem);
 
             if (naveMae.getDistancia() > 0 && (naveMae.getDistancia() % 5 == 0 || naveMae.getDistancia() % 7 == 0 || naveMae.getDistancia() % 10 == 0)) {
 
@@ -42,7 +50,7 @@ public class AtividadeNave_03 {
                     System.out.println("\nO que deseja fazer?");
                     System.out.println("[1] Atacar");
                     System.out.println("[2] Reparar nave");
-                    System.out.println("[3] Buscar equipamentos");
+                    System.out.println("[3] Usar arma especial");
                     System.out.println("[4] Status da sua nave");
                     System.out.println("[5] Status do inimigo");
                     System.out.println("[6] Fugir");
@@ -81,10 +89,6 @@ public class AtividadeNave_03 {
                             break;
 
                         case 3:
-                            int loot = naveBusca.fazerBusca();
-                            System.out.println("Busca realizada! Nível encontrado: " + loot);
-                            naveBatalha.uparEquipamento(loot, loot);
-                            System.out.println("Equipamentos e Blindagem melhorados!");
                             break;
 
                         case 4:
@@ -109,6 +113,15 @@ public class AtividadeNave_03 {
                             break;
                     }
                 }
+                rodada ++;
+
+                if(rodada % 5 == 0){
+                    int loot = naveBusca.fazerBusca();
+                    System.out.println("Busca realizada! Nível encontrado: " + loot);
+                    naveBatalha.uparEquipamento(loot, loot);
+                    System.out.println("Equipamentos e Blindagem melhorados!");
+                }
+
             } else {
                 System.out.println("Distância atual: " + naveMae.getDistancia() + " km. Nada encontrado no espaço...");
             }

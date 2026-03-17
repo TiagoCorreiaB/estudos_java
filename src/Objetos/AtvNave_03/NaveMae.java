@@ -7,8 +7,8 @@ public class NaveMae extends Nave {
     }
 
     @Override
-    public final void viajar() {
-        this.setDistancia(this.distancia);
+    public final void viajar(int viagem) {
+        this.setDistancia(viagem);
     }
 
     @Override

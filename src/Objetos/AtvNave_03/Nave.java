@@ -50,10 +50,11 @@ public abstract class Nave implements CaracteristicasNave {
     }
 
     //Metodos Comuns
-    public abstract void viajar();
+    public abstract void viajar(int viagem);
 
     public abstract boolean fugir();
 
     public abstract void receberDano(int dano);
+
 }
 
