@@ -102,36 +102,54 @@ public class AtividadeNave_03 {
                             break;
 
                         case 3:
+                            //verificações de segurança
+                            if (naveBatalha.getVida() <= 0) {
+                                System.out.println("Sua nave foi destruída! GAME OVER.");
+                                batalha = false;
+                                escolha = 0; // Força a parada
+                            }
+                            if (naveInimiga.getVida() <= 0) {
+                                System.out.println("A nave inimiga foi destruída!");
+                                batalha = false;
+                            }
+
                             //aqui mostra as habilidades para escolha
-                            if (rodada <= 10){
+                            naveBatalha.desbloquearHabilidade(rodada);
+                            if (!naveBatalha.temHabilidade()){
                                 System.out.println("Sem habilidades especiais para usar ainda");
                             }
                             else{
                                 //Amostra as habilidades disponiveis
                                 System.out.println(" ______________________________ ");
-                                naveBatalha.desbloquearHabilidade(rodada);
+                                naveBatalha.mostrarHabilidade();
                                 System.out.println(" ______________________________ ");
 
                                 //Pede a habilidade que vai usar
                                 System.out.print("Escolha a Habilidade que vai usar: ");
                                 int escolhaHabilidade = scan.nextInt();
 
-                                int resultado = naveBatalha.usarHabilidade(escolhaHabilidade, defVidaInimigo);
-
-                                while (resultado == 0){
-                                    System.out.println("Escolha inválida");
+                                while (!naveBatalha.isHabilidade(escolhaHabilidade)){
+                                    System.out.println("Escolha inválida ou ainda não desbloqueada");
                                     System.out.println("Tente novamente: ");
                                     escolhaHabilidade = scan.nextInt();
-                                    resultado = naveBatalha.usarHabilidade(escolhaHabilidade, defVidaInimigo);
                                 }
 
-                                switch (escolhaHabilidade){
-                                    case 1: naveInimiga.receberDano(naveBatalha.usarHabilidade(escolhaHabilidade, defVidaInimigo));
-                                        break;
-                                    case 2: naveBatalha.concertarNave(naveBatalha.usarHabilidade(escolhaHabilidade, defVidaInimigo));
-                                        break;
-                                    case 3: break;
+                                int valorHabilidade = naveBatalha.usarHabilidade(escolhaHabilidade, defVidaInimigo);
+
+                                if (escolhaHabilidade == 1) {
+                                    naveInimiga.receberDano(valorHabilidade);
+                                    System.out.println("Você usou o Canhão de Plasma e causou " + valorHabilidade + " de dano!");
+                                } else if (escolhaHabilidade == 2) {
+                                    naveBatalha.concertarNave(valorHabilidade);
+                                    System.out.println("Você usou Roubo de Sucatas e recuperou " + valorHabilidade + " de vida!");
+                                } else if (escolhaHabilidade == 3) {
+                                    System.out.println("Interferência de Sensores ativada!");
                                 }
+
+                                //Parte que o inimigo ataca de volta(Ou não)
+                                danoInimigo = naveInimiga.darDano();
+                                naveBatalha.receberDano(danoInimigo);
+                                System.out.println("O inimigo atacou de volta e causou " + danoInimigo + " de dano!");
                             }
 
                             break;
@@ -169,7 +187,6 @@ public class AtividadeNave_03 {
                 if (rodada % 7 == 0){
                     naveBatalha.recarrecarEscudo();
                 }
-                naveBatalha.desbloquearHabilidade(rodada);
 
             } else {
                 System.out.println("Distância atual: " + naveMae.getDistancia() + " km. Nada encontrado no espaço...");

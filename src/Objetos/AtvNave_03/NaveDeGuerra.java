@@ -42,6 +42,10 @@ public class NaveDeGuerra extends NaveMae {
         }
     }
 
+    public boolean temHabilidade() {
+        return canhaoDePlasma || rouboDeSucatas || interferenciaDeSensores;
+    }
+
     public final int usarHabilidade(int escolha, int vidaInimigo){
         switch (escolha){
             case 1: return 20;
@@ -55,18 +59,40 @@ public class NaveDeGuerra extends NaveMae {
 
     public final void desbloquearHabilidade(int rodada){
         if (rodada >= 10){
-            System.out.println("|     1- Canhão de plasma      |");
             this.canhaoDePlasma = true;
         }
         if (rodada >= 20) {
-            System.out.println("|     2- Roubo de Sucatas      |");
             this.rouboDeSucatas = true;
         }
         if (rodada >= 30) {
-            System.out.println("| 3- Interferencia de Sensores |");
             this.interferenciaDeSensores = true;
         }
 
+    }
+
+    public void mostrarHabilidade(){
+        if (canhaoDePlasma){
+            System.out.println("|     1- Canhão de plasma      |");
+        }
+        if (rouboDeSucatas){
+            System.out.println("|     2- Roubo de Sucatas      |");
+        }
+        if (interferenciaDeSensores){
+            System.out.println("| 3- Interferencia de Sensores |");
+        }
+    }
+
+    public boolean isHabilidade(int escolha){
+        if (escolha == 1 && canhaoDePlasma){
+            return true;
+        }
+        if (escolha == 2 && rouboDeSucatas){
+            return true;
+        }
+        if (escolha == 3 && interferenciaDeSensores){
+            return true;
+        }
+        return false;
     }
 
     public final void recarrecarEscudo(){
