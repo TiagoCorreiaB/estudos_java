@@ -22,7 +22,7 @@ public class AtividadeNave_03 {
         System.out.println(" ________________________________________________________________ ");
         System.out.println("|          Bem vindo ao meu Jogo de batalha de naves!            |");
         System.out.println(" ---------------------------------------------------------------- ");
-        System.out.println("| Algumas regras antes e continuar:                              |");
+        System.out.println("| Algumas regras antes de continuar:                             |");
         System.out.println("|  -Só é permitido andar entre 1km a 20km por rodada             |");
         System.out.println("|  -As naves de patrulha só procurarão itens de 5 em 5 rodadas   |");
         System.out.println("|  -O dano e a vida dos inimigos estará aumentando a cada rodada |");
@@ -35,6 +35,7 @@ public class AtividadeNave_03 {
         //Fazer sistema de habilidades especiais depois de uma quantiade de rodadas jogada!!!!!!!
 
         while (escolha == 1) {
+            rodada ++;
 
             System.out.print("Digite quantos km deseja viajar: ");
             viagem = scan.nextInt();
@@ -96,19 +97,41 @@ public class AtividadeNave_03 {
                             break;
 
                         case 2:
-                            naveBatalha.concertarNave();
+                            naveBatalha.concertarNave(10);
                             System.out.println("Nave reparada! Vida atual: " + naveBatalha.getVida());
                             break;
 
                         case 3:
                             //aqui mostra as habilidades para escolha
-                            if (rodada > 10){
+                            if (rodada <= 10){
                                 System.out.println("Sem habilidades especiais para usar ainda");
                             }
                             else{
-                                System.out.println("Escolha a Habilidade que vai usar: ");
+                                //Amostra as habilidades disponiveis
+                                System.out.println(" ______________________________ ");
+                                naveBatalha.desbloquearHabilidade(rodada);
+                                System.out.println(" ______________________________ ");
+
+                                //Pede a habilidade que vai usar
+                                System.out.print("Escolha a Habilidade que vai usar: ");
                                 int escolhaHabilidade = scan.nextInt();
-                                naveBatalha.usarHabilidade(escolhaHabilidade, defVidaInimigo);
+
+                                int resultado = naveBatalha.usarHabilidade(escolhaHabilidade, defVidaInimigo);
+
+                                while (resultado == 0){
+                                    System.out.println("Escolha inválida");
+                                    System.out.println("Tente novamente: ");
+                                    escolhaHabilidade = scan.nextInt();
+                                    resultado = naveBatalha.usarHabilidade(escolhaHabilidade, defVidaInimigo);
+                                }
+
+                                switch (escolhaHabilidade){
+                                    case 1: naveInimiga.receberDano(naveBatalha.usarHabilidade(escolhaHabilidade, defVidaInimigo));
+                                        break;
+                                    case 2: naveBatalha.concertarNave(naveBatalha.usarHabilidade(escolhaHabilidade, defVidaInimigo));
+                                        break;
+                                    case 3: break;
+                                }
                             }
 
                             break;
@@ -136,7 +159,6 @@ public class AtividadeNave_03 {
                             break;
                     }
                 }
-                rodada ++;
 
                 if(rodada % 5 == 0){
                     int loot = naveBusca.fazerBusca();

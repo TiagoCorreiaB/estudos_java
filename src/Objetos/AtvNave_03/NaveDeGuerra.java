@@ -45,21 +45,25 @@ public class NaveDeGuerra extends NaveMae {
     public final int usarHabilidade(int escolha, int vidaInimigo){
         switch (escolha){
             case 1: return 20;
-            break;
-            case 2: break;
-            case 3: return 23;
-            break;
+            case 2: return vidaInimigo / 3;
+            case 3: //Mudar return para não retornar 0;
+                break;
         }
+
+        return 0;
     }
 
     public final void desbloquearHabilidade(int rodada){
-        if (rodada == 10){
+        if (rodada >= 10){
+            System.out.println("|     1- Canhão de plasma      |");
             this.canhaoDePlasma = true;
         }
-        if (rodada == 20) {
+        if (rodada >= 20) {
+            System.out.println("|     2- Roubo de Sucatas      |");
             this.rouboDeSucatas = true;
         }
-        if (rodada == 30) {
+        if (rodada >= 30) {
+            System.out.println("| 3- Interferencia de Sensores |");
             this.interferenciaDeSensores = true;
         }
 
@@ -78,9 +82,9 @@ public class NaveDeGuerra extends NaveMae {
         this.setDano(this.getDano() + armamento);
     }
 
-    public void concertarNave(){
+    public void concertarNave(int vida){
         if (this.getVida() > 0 && this.getVida() < this.vidaMaxima) {
-            setVida(getVida() + 10);
+            setVida(getVida() + vida);
             if (this.getVida() > this.vidaMaxima) {
                 setVida(this.vidaMaxima);
             }
