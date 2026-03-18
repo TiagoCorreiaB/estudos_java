@@ -19,7 +19,7 @@ public class AtividadeNave_03 {
         int viagem;
         int rodada = 0;
         boolean paralizia = false;
-        //Fazer breve descrição de jogo
+
         System.out.println(" ________________________________________________________________ ");
         System.out.println("|          Bem vindo ao meu Jogo de batalha de naves!            |");
         System.out.println(" ---------------------------------------------------------------- ");
@@ -32,8 +32,6 @@ public class AtividadeNave_03 {
         System.out.println(" ---------------------------------------------------------------- ");
         System.out.print("Deseja iniciar a exploração? (1 = sim | 0 = não): ");
         escolha = scan.nextInt();
-
-        //Fazer sistema de habilidades especiais depois de uma quantiade de rodadas jogada!!!!!!!
 
         while (escolha == 1) {
             rodada ++;
@@ -50,7 +48,6 @@ public class AtividadeNave_03 {
 
                 System.out.println("\n⚠ Você encontrou uma nave inimiga em " + naveMae.getDistancia() + " km! ⚠");
 
-                // Instancia o inimigo aqui para ele vir com vida cheia a cada novo encontro
                 NaveInimiga naveInimiga = new NaveInimiga(defVidaInimigo, defDanoInimigo);
                 int vidaDinamica = random.nextInt(10) + 3;
                 int danoDinamico = random.nextInt(10) + 3;
@@ -86,57 +83,58 @@ public class AtividadeNave_03 {
                             }
 
                             // Inimigo ataca de volta
-                            int danoInimigo = naveInimiga.darDano();
                             if (!paralizia){
+                                int danoInimigo = naveInimiga.darDano();
                                 naveBatalha.receberDano(danoInimigo);
                                 System.out.println("O inimigo atacou e causou " + danoInimigo + " de dano!");
-                            }
-                            else{
-                                paralizia = false;
+                            } else {
+                                System.out.println("O inimigo está paralisado e não atacou!");
+                                paralizia = false; // Tira a paralisia para a próxima rodada
                             }
 
                             if (naveBatalha.getVida() <= 0) {
                                 System.out.println("Sua nave foi destruída! GAME OVER.");
                                 batalha = false;
-                                escolha = 0; // Força o fim do jogo
+                                escolha = 0;
                             }
                             break;
 
                         case 2:
                             naveBatalha.concertarNave(10);
                             System.out.println("Nave reparada! Vida atual: " + naveBatalha.getVida());
-                            break;
 
-                        case 3:
-                            //verificações de segurança
+                            if (!paralizia){
+                                int danoInimigo = naveInimiga.darDano();
+                                naveBatalha.receberDano(danoInimigo);
+                                System.out.println("O inimigo atacou enquanto você consertava a nave e causou " + danoInimigo + " de dano!");
+                            } else {
+                                System.out.println("O inimigo está paralisado e não atacou!");
+                                paralizia = false;
+                            }
+
                             if (naveBatalha.getVida() <= 0) {
                                 System.out.println("Sua nave foi destruída! GAME OVER.");
                                 batalha = false;
-                                escolha = 0; // Força a parada
+                                escolha = 0;
                             }
-                            if (naveInimiga.getVida() <= 0) {
-                                System.out.println("A nave inimiga foi destruída!");
-                                batalha = false;
-                            }
+                            break;
 
-                            //aqui mostra as habilidades para escolha
+                        case 3:
                             naveBatalha.desbloquearHabilidade(rodada);
+
                             if (!naveBatalha.temHabilidade()){
-                                System.out.println("Sem habilidades especiais para usar ainda");
-                            }
-                            else{
-                                //Amostra as habilidades disponiveis
+                                System.out.println("Sem habilidades especiais para usar ainda.");
+                            } else {
                                 System.out.println(" ______________________________ ");
                                 naveBatalha.mostrarHabilidade();
                                 System.out.println(" ______________________________ ");
 
-                                //Pede a habilidade que vai usar
                                 System.out.print("Escolha a Habilidade que vai usar: ");
                                 int escolhaHabilidade = scan.nextInt();
 
                                 while (!naveBatalha.isHabilidade(escolhaHabilidade)){
-                                    System.out.println("Escolha inválida ou ainda não desbloqueada");
-                                    System.out.println("Tente novamente: ");
+                                    System.out.println("Escolha inválida ou ainda não desbloqueada.");
+                                    System.out.print("Tente novamente: ");
                                     escolhaHabilidade = scan.nextInt();
                                 }
 
@@ -150,17 +148,30 @@ public class AtividadeNave_03 {
                                     System.out.println("Você usou Roubo de Sucatas e recuperou " + valorHabilidade + " de vida!");
                                 } else if (escolhaHabilidade == 3) {
                                     paralizia = true;
-                                    System.out.println("Interferência de Sensores ativada! O inimigo não se moverá na proxima rodada!");
+                                    System.out.println("Interferência de Sensores ativada! O inimigo não se moverá nesta rodada!");
                                 }
 
-                                //Parte que o inimigo ataca de volta(Ou não)
+                                if (naveInimiga.getVida() <= 0) {
+                                    System.out.println("A nave inimiga foi destruída!");
+                                    batalha = false;
+                                    break;
+                                }
+
+                                // Inimigo ataca de volta (se não estiver paralisado)
                                 if (!paralizia){
-                                    danoInimigo = naveInimiga.darDano();
+                                    int danoInimigo = naveInimiga.darDano();
                                     naveBatalha.receberDano(danoInimigo);
                                     System.out.println("O inimigo atacou de volta e causou " + danoInimigo + " de dano!");
+                                } else {
+                                    System.out.println("O inimigo está paralisado e não atacou!");
+                                }
+
+                                if (naveBatalha.getVida() <= 0) {
+                                    System.out.println("Sua nave foi destruída! GAME OVER.");
+                                    batalha = false;
+                                    escolha = 0;
                                 }
                             }
-
                             break;
 
                         case 4:
