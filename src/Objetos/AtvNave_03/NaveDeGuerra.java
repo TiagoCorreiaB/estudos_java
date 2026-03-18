@@ -32,13 +32,18 @@ public class NaveDeGuerra extends NaveMae {
 
     @Override
     public void receberDano(int danoRecebido) {
-        if (this.escudo > 0){
+        if (this.escudo > 0) {
             this.escudo -= danoRecebido;
-        }
-        else{
+            if (this.escudo < 0) { // Se o escudo ficar negativo (quebrou)
+                int danoRestante = Math.abs(this.escudo); // Pega o que sobrou do dano
+                this.escudo = 0; // Zera o escudo
+                int novaVida = this.getVida() - danoRestante; // Tira o resto da vida
+                this.setVida(Math.max(novaVida, 0)); // Garante que a vida não fique negativa
+            }
+        } else {
+            // Se já não tem escudo, tira tudo da vida
             int novaVida = this.getVida() - danoRecebido;
-            if (novaVida < 0){novaVida = 0;}
-            this.setVida(novaVida);
+            this.setVida(Math.max(novaVida, 0));
         }
     }
 
@@ -50,8 +55,7 @@ public class NaveDeGuerra extends NaveMae {
         switch (escolha){
             case 1: return 20;
             case 2: return vidaInimigo / 3;
-            case 3: //Mudar return para não retornar 0;
-                break;
+            case 3: return 1;
         }
 
         return 0;

@@ -18,6 +18,7 @@ public class AtividadeNave_03 {
         int escolha;
         int viagem;
         int rodada = 0;
+        boolean paralizia = false;
         //Fazer breve descrição de jogo
         System.out.println(" ________________________________________________________________ ");
         System.out.println("|          Bem vindo ao meu Jogo de batalha de naves!            |");
@@ -86,8 +87,13 @@ public class AtividadeNave_03 {
 
                             // Inimigo ataca de volta
                             int danoInimigo = naveInimiga.darDano();
-                            naveBatalha.receberDano(danoInimigo);
-                            System.out.println("O inimigo atacou e causou " + danoInimigo + " de dano!");
+                            if (!paralizia){
+                                naveBatalha.receberDano(danoInimigo);
+                                System.out.println("O inimigo atacou e causou " + danoInimigo + " de dano!");
+                            }
+                            else{
+                                paralizia = false;
+                            }
 
                             if (naveBatalha.getVida() <= 0) {
                                 System.out.println("Sua nave foi destruída! GAME OVER.");
@@ -143,13 +149,16 @@ public class AtividadeNave_03 {
                                     naveBatalha.concertarNave(valorHabilidade);
                                     System.out.println("Você usou Roubo de Sucatas e recuperou " + valorHabilidade + " de vida!");
                                 } else if (escolhaHabilidade == 3) {
-                                    System.out.println("Interferência de Sensores ativada!");
+                                    paralizia = true;
+                                    System.out.println("Interferência de Sensores ativada! O inimigo não se moverá na proxima rodada!");
                                 }
 
                                 //Parte que o inimigo ataca de volta(Ou não)
-                                danoInimigo = naveInimiga.darDano();
-                                naveBatalha.receberDano(danoInimigo);
-                                System.out.println("O inimigo atacou de volta e causou " + danoInimigo + " de dano!");
+                                if (!paralizia){
+                                    danoInimigo = naveInimiga.darDano();
+                                    naveBatalha.receberDano(danoInimigo);
+                                    System.out.println("O inimigo atacou de volta e causou " + danoInimigo + " de dano!");
+                                }
                             }
 
                             break;
