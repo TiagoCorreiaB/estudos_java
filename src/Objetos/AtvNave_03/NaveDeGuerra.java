@@ -108,6 +108,7 @@ public class NaveDeGuerra extends NaveMae {
     }
 
     public void uparEquipamento(int blindagem, int armamento){
+        this.setVidaMaxima(this.getVidaMaxima() + blindagem);
         this.setVida(this.vidaMaxima + blindagem);
         this.setDano(this.getDano() + armamento);
     }
